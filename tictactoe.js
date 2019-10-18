@@ -249,7 +249,7 @@ function Board (options){
       let {result, winningLine} = getResult(state.game._gameBoard, state.players[state.game.turn].symbol )
       let resultText = "tie"
       if(result !== RESULT.tie)
-        resultText = getPlayerName(result) + " Won"
+        resultText = getPlayerName(result) + " Won " + "😃"
 
       let htmlBefore = `<h3>${resultText} ${htmlSpaces(2)} Click to restart </h3> `
       let board = state.game._gameBoard.reduce(function(acc,curr,rowIndex){
@@ -345,11 +345,9 @@ function Board (options){
   $(options.el).on('click', '.btnGroup1', question1Handler)
   $(options.el).on('click', '.btnGroup2', question2Handler)
   $(options.el).on('click', '#gameView .cell', playerMoveHandler)
-  $(options.el).on('click', '#resultView', beginGame)
-
+  $(options.el).on('click', '#resultView',"#emoji", beginGame)
   render ()
 }
-
 
 const board = new Board ({
   el : document.getElementById('root')
